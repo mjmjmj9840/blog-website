@@ -1,18 +1,18 @@
 //jshint esversion:6
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const ejs = require('ejs');
-const mongoose = require('mongoose');
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
 
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://_@cluster0.suwaf.mongodb.net/blogDB', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: true,
@@ -23,40 +23,40 @@ const postsSchema = {
   content: String,
 };
 
-const Post = mongoose.model('Post', postsSchema);
+const Post = mongoose.model("Post", postsSchema);
 
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
   Post.find({}, function (err, foundPosts) {
     if (!err) {
-      res.render('home', { posts: foundPosts });
+      res.render("home", { posts: foundPosts });
     }
   });
 });
 
-app.get('/contact', function (req, res) {
-  res.render('contact');
+app.get("/contact", function (req, res) {
+  res.render("contact");
 });
 
-app.get('/compose', function (req, res) {
-  res.render('compose');
+app.get("/compose", function (req, res) {
+  res.render("compose");
 });
 
-app.get('/posts/:postID', function (req, res) {
+app.get("/posts/:postID", function (req, res) {
   const requestedID = req.params.postID;
 
   Post.findOne({ _id: requestedID }, function (err, foundPost) {
     if (!err) {
       if (!foundPost) {
         // Post가 없는 경우
-        res.redirect('/');
+        res.redirect("/");
       } else {
-        res.render('post', { title: foundPost.title, contents: foundPost.content });
+        res.render("post", { title: foundPost.title, contents: foundPost.content });
       }
     }
   });
 });
 
-app.post('/compose', function (req, res) {
+app.post("/compose", function (req, res) {
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody,
@@ -64,16 +64,16 @@ app.post('/compose', function (req, res) {
 
   post.save(function (err) {
     if (!err) {
-      res.redirect('/');
+      res.redirect("/");
     }
   });
 });
 
 let port = process.env.PORT;
-if (port == null || port == '') {
+if (port == null || port == "") {
   port = 3000;
 }
 
 app.listen(port, function () {
-  console.log('Server started successfully.');
+  console.log("Server started successfully.");
 });

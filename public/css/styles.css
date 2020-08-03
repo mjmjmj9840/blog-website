@@ -48,24 +48,3 @@
 .form-group label {
   font-size: 2rem;
 }
-
-/* Footer Section */
-
-.footer-padding {
-  padding-bottom: 60px;
-}
-
-.footer {
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #1abc9c;
-}
-
-.footer p {
-  margin-top: 25px;
-  font-size: 1.5rem;
-  color: #fff;
-}
