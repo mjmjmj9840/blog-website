@@ -3,18 +3,26 @@
   margin: 30px 50px;
 }
 .navbar {
-  padding: 15px 10px;
+  padding: 15px 15px;
   border: 0;
   border-radius: 0;
   margin-bottom: 0;
-  font-size: 15px;
-  letter-spacing: 5px;
+  font-size: 1.2rem;
 }
 .navbar-brand {
-  font-size: 3rem;
+  font-size: 2rem;
 }
+
+.nav-link {
+  letter-spacing: 5px;
+}
+
 .navbar-nav li a:hover {
   color: #1abc9c !important;
+}
+
+.navbar-collapse a {
+  margin-right: 10px;
 }
 
 /* Home - Body Section */
@@ -28,7 +36,7 @@
 }
 
 .post-content {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 /* Contact Section */

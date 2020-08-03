@@ -1,10 +1,10 @@
-<%- include("partials/header"); %>
+<%- include("partials/" + headerName); %>
 <h1 class="post-title">Home</h1>
 <p class="post-content">Welcome to MiJin's Blog!!!&#128588</p>
 
 <% posts.forEach(function(post) { %>
   <div class="post">
-    <h1><%= post.title %></h1>
+    <h2><%= post.title %></h2>
     <p class="post-content">
       <%= (post.content).slice(0, 100) %> ...
       <a href="/posts/<%=post._id%>">Read More</a>
