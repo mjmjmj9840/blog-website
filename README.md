@@ -1,6 +1,6 @@
 # blog-website project
 
-블로그 주소: [https://peaceful-coast-67831.herokuapp.com/](https://peaceful-coast-67831.herokuapp.com/)
+블로그 주소: [https://mjmjmj9840-blog.herokuapp.com/](https://mjmjmj9840-blog.herokuapp.com/)
 
 
 ## 사용한 프레임워크 및 모듈
