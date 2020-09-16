@@ -10,6 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const flash = require('connect-flash');
 const http = require('http');
+require('dotenv').config();
 
 const app = express();
 
