@@ -85,7 +85,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'https://mjmjmj9840-blog.herokuapp.com/auth/goolge/blog',
+      callbackURL: 'https://mjmjmj9840-blog.herokuapp.com/auth/google/blog',
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
     function (accessToken, refreshToken, profile, cb) {
