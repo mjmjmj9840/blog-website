@@ -115,7 +115,10 @@ app.get('/logout', function (req, res) {
 // Home Route
 app.get('/', function (req, res) {
   Post.find({}, function (err, foundPosts) {
-    if (!err) {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
       if (req.isAuthenticated()) {
         // already login
         res.render('home', { headerName: 'header-login', posts: foundPosts });
