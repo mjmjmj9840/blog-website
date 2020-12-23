@@ -24,6 +24,6 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "mquery": ">=3.2.3"
+    "mquery": "^3.2.3"
   }
 }
