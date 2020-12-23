@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const flash = require('connect-flash');
@@ -43,7 +44,6 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   useFindAndModify: true,
 });
-mongoose.set('useCreateIndex', true);
 
 // Post Shcema
 const postsSchema = new mongoose.Schema({
@@ -58,7 +58,6 @@ const Post = new mongoose.model('Post', postsSchema);
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
-  googleId: String,
   secret: String,
 });
 
@@ -88,9 +87,24 @@ passport.use(
       callbackURL: 'https://mjmjmj9840-blog.herokuapp.com/auth/google/blog',
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
+    function (accessToken, refreshToken, profile, done) {
+      User.findOrCreate({ username: profile.id }, function (err, user) {
+        return done(err, user);
+      });
+    }
+  )
+);
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      callbackURL: 'https://mjmjmj9840-blog.herokuapp.com/auth/facebook/callback',
+    },
+    function (accessToken, refreshToken, profile, done) {
+      User.findOrCreate({ username: profile.id }, function (err, user) {
+        return done(err, user);
       });
     }
   )
@@ -102,6 +116,17 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 app.get(
   '/auth/google/blog',
   passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  }
+);
+
+// Facebook Authentication
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile'] }));
+
+app.get(
+  '/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
   function (req, res) {
     res.redirect('/');
   }
@@ -205,7 +230,7 @@ app.get('/login', function (req, res) {
 
 app.post('/login', function (req, res) {
   const user = new User({
-    username: req.body.username,
+    userId: req.body.username,
     password: req.body.password,
   });
 

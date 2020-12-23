@@ -7,10 +7,10 @@
   border: 0;
   border-radius: 0;
   margin-bottom: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .navbar-brand {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .nav-link {
@@ -36,7 +36,7 @@
 }
 
 .post-content {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 /* Contact Section */
@@ -46,7 +46,7 @@
 }
 
 .contact a {
-  font-size: 2rem;
+  font-size: 1rem;
   text-decoration: none;
   padding-right: 20px;
 }
@@ -54,5 +54,5 @@
 /* Compose Section */
 
 .form-group label {
-  font-size: 2rem;
+  font-size: 1rem;
 }
