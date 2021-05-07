@@ -31,8 +31,14 @@
   margin-top: 40px;
 }
 
+.post-title-container {
+  margin-bottom: 20px;
+}
+
 .post-title {
   text-decoration: underline;
+  display: inline;
+  margin-right: 10px;
 }
 
 .post-content {

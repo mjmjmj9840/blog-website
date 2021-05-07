@@ -1,6 +1,10 @@
 <%- include("partials/" + headerName); %>
 <div>
-  <h2 class="post-title"><%= title %></h2>
+  <div class="post-title-container">
+    <h2 class="post-title"><%= title %></h2>
+    <a class="btn btn-sm btn-dark" href="/update" role="button">MODIFY</a>
+    <a class="btn btn-sm btn-danger" href="/delete" role="button">DELETE</a>
+  </div>
   <p class="post-content"><%= contents %></p>
 </div>
 
